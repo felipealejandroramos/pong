@@ -112,7 +112,13 @@ export default {
       ballY <= paddle.position + 100
         ) {
           // The ball hit Player 1's paddle
-          this.ball.movement[0] = Math.abs(this.ball.movement[0]) // Change horizontal direction
+          if (this.checkifbetween(ballY, paddle.position, paddle.position + 40)) {
+            this.ball.movement[1] = this.ball.movement[1] - 1
+          } else if (this.checkifbetween(ballY, paddle.position + 60, paddle.position + 100)) {
+            this.ball.movement[1] = this.ball.movement[1] + 1
+          }
+
+          this.ball.movement[0] = -this.ball.movement[0] // Change horizontal direction
           const paddleSound = this.$refs.paddleSound
           paddleSound.play()
         }
@@ -124,7 +130,12 @@ export default {
       ballY <= paddle.position + 100
         ) {
           // The ball hit Player 2's paddle
-          this.ball.movement[0] = -Math.abs(this.ball.movement[0]) // Change horizontal direction
+          if (this.checkifbetween(ballY, paddle.position, paddle.position + 40)) {
+            this.ball.movement[1] = this.ball.movement[1] - 1
+          } else if (this.checkifbetween(ballY, paddle.position + 60, paddle.position + 100)) {
+            this.ball.movement[1] = this.ball.movement[1] + 1
+          }
+          this.ball.movement[0] = -this.ball.movement[0]// Change horizontal direction
           const paddleSound = this.$refs.paddleSound
           paddleSound.play()
         }
